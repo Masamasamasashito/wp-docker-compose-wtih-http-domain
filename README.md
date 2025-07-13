@@ -8,4 +8,5 @@ DockerDesktopで非SSL独自ドメインWPとしてdocker-compose up -d出来る
 * phpmyadmin:5.2.2
 * wordpress:latest
 * 非SSL独自ドメイン(hostsファイルでFlywheel競合に注意)
-* WP-CLIなし
+* WP-CLI無し
+*  MailHog無し
