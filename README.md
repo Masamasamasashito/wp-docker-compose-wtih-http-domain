@@ -4,10 +4,11 @@
 * AWS ALBでACMによるSSL終端想定  
 * docker-compose.ymlと同じ階層にhtmlフォルダを作っておいてから`docker-compose up -d`
 * hostsファイルは '127.0.0.1 nissy-dev01.com'
+* Windowsファイアウォール穴あけ不要
 
-# メール用ソフト MailHog 無し
-同梱 drawioファイルにてネットワーク参照可能 Windowsファイアウォール穴あけ不要
-
+# 構成内容
+同梱 drawioファイルにてネットワーク参照可能  
+  
 * mariadb:11.8.2
 * phpmyadmin:5.2.2
 * wordpress:latest
