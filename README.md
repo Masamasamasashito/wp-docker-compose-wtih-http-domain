@@ -1,7 +1,7 @@
 # wp-docker-compose-wtih-http-domain
 
 * DockerDesktopで非SSL独自ドメインWP(flywheeelが起動している場合、ネットワーク競合に注意)。  
-* AWS ALBでACMによるSSL終端想定  
+* AWS ALBでACMによるSSL終端想定
 * docker-compose.ymlと同じ階層にhtmlフォルダを作っておいてから`docker-compose up -d`
 * hostsファイルには`127.0.0.1 nissy-dev01.com`を1行追記
 * Windowsファイアウォール穴あけ不要
