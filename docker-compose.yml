@@ -1,0 +1,78 @@
+services:
+  mariadb:
+    image: mariadb:11.8.2
+    container_name: nissy_dev01_mariadb
+    ports:
+      - "3306:3306"
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: nissy_dev01_db_root_password
+      MARIADB_DATABASE: nissy_dev01_db_wp
+      MARIADB_USER: nissy_dev01_db_wp_user
+      MARIADB_PASSWORD: nissy_dev01_db_wp_password
+    volumes:
+      - nissy-dev01-db-data:/var/lib/mysql
+    networks:
+      nissy-dev01-ipv4-network-bridge:
+        ipv4_address: 172.18.1.10
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:5.2.2
+    container_name: nissy_dev01_phpmyadmin
+    ports:
+      - "8080:80"
+    restart: always
+    environment:
+      PMA_HOST: mariadb
+      PMA_USER: nissy_dev01_db_wp_user
+      PMA_PASSWORD: nissy_dev01_db_wp_password
+    depends_on:
+      - mariadb
+    volumes:
+        - nissy-dev01-dbadmin-data:/sessions
+    networks:
+      nissy-dev01-ipv4-network-bridge:
+        ipv4_address: 172.18.1.20
+
+  wordpress:
+    image: wordpress:latest
+    container_name: nissy_dev01_wordpress
+    restart: always
+    # 右のコンテナポート80リスンに、左のポート80でプラウザから接続。競合回避として、同じポートはなるべく利用しないほうがいい・・・
+    ports:
+        - "127.0.0.1:80:80"
+    extra_hosts:
+      - "nissy-dev01.com:172.18.1.30"
+    environment:
+      WORDPRESS_DB_HOST: mariadb:3306
+      WORDPRESS_DB_USER: nissy_dev01_db_wp_user
+      WORDPRESS_DB_PASSWORD: nissy_dev01_db_wp_password
+      WORDPRESS_DB_NAME: nissy_dev01_db_wp
+      WORDPRESS_DEBUG: 1
+      WORDPRESS_CONFIG_EXTRA: |
+        define('WP_HOME', 'http://nissy-dev01.com');
+        define('WP_SITEURL', 'http://nissy-dev01.com');
+    depends_on:
+        - mariadb
+    volumes:
+        - nissy-dev01-wp-data:/var/www/html
+        - ./html:/var/www/html  # 母艦の/html(docker-composeコマンド実行場所)を、コンテナ内の/var/www/htmlにマウント
+    networks:
+      nissy-dev01-ipv4-network-bridge:
+        ipv4_address: 172.18.1.30
+
+networks:
+  default:
+    name: bridge
+  nissy-dev01-ipv4-network-bridge:
+    name: nissy-dev01-ipv4-network-bridge
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.18.1.0/24
+
+volumes:
+  nissy-dev01-db-data:
+  nissy-dev01-dbadmin-data:
+  nissy-dev01-wp-data:
