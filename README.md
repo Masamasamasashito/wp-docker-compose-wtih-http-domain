@@ -12,6 +12,6 @@
 * mariadb:11.8.2
 * phpmyadmin:5.2.2
 * wordpress:latest
-* 非SSL独自ドメイン(hostsファイルでFlywheel競合に注意)
+* 非SSL独自ドメイン
 * WP-CLI無し
 * MailHog無し
