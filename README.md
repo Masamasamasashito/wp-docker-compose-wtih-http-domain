@@ -3,7 +3,7 @@
 * DockerDesktopで非SSL独自ドメインWPとしてdocker-compose up -d出来る(flywheeel競合に注意)。  
 * AWS ALBでACMによるSSL終端想定  
 * docker-compose.ymlと同じ階層にhtmlフォルダを作っておいてから`docker-compose up -d`
-* hostsファイルは '127.0.0.1 nissy-dev01.com'
+* hostsファイルには '127.0.0.1 nissy-dev01.com'1行追記
 * Windowsファイアウォール穴あけ不要
 
 # 構成内容
