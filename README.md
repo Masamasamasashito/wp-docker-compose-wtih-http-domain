@@ -15,3 +15,9 @@
 * 非SSL独自ドメイン
 * WP-CLI無し
 * MailHog無し
+
+# 置換
+
+以下の命名を(Ctrl+F)で適宜置換してご利用ください
+* nissy_dev01
+* nissy-dev01
