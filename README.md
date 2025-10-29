@@ -47,3 +47,9 @@ docker network inspect $(docker network ls -q) --format '{{.Name}}: {{range .IPA
   * [http://127.0.0.1:80](http://127.0.0.1:80)
 * phpmyadmin
   * [http://127.0.0.1:8080](http://127.0.0.1:8080)
+
+# 図解
+
+母艦Windows OSのブラウザからWordPressまでのhttpリクエストのみ経路を青で記載
+
+![https://github.com/Masamasamasashito/wp-docker-compose-wtih-http-domain/blob/main/nissy-dev01-windows-local-docker-20251029-06.jpg](https://github.com/Masamasamasashito/wp-docker-compose-wtih-http-domain/blob/main/nissy-dev01-windows-local-docker-20251029-06.jpg)
