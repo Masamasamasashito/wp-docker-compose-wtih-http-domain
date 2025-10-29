@@ -34,12 +34,12 @@ docker network inspect $(docker network ls -q) --format '{{.Name}}: {{range .IPA
 # 置換
 
 以下の命名を(Ctrl+F)で適宜置換してご利用ください
-* nissy_dev01.com
+* nissy-dev01.com
 
 # 起動後
 
 * WordPress
-  * [http://nissy_dev01.com](http://nissy_dev01.com)
+  * [http://nissy-dev01.com](http://nissy-dev01.com)
   * [http://127.0.0.1:80](http://127.0.0.1:80)
 * phpmyadmin
   * [http://127.0.0.1:8080](http://127.0.0.1:8080)
