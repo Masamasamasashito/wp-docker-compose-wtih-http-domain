@@ -26,6 +26,7 @@ docker network inspect $(docker network ls -q) --format '{{.Name}}: {{range .IPA
 
 * wordpress:latest
     - https://hub.docker.com/_/wordpress
+    - apache
 * phpmyadmin:latest
     - https://hub.docker.com/_/phpmyadmin
 * mariadb:latest
