@@ -38,9 +38,8 @@ services:
     image: wordpress:latest
     container_name: nissy_dev01_wordpress
     restart: always
-    # 右のコンテナポート80リスンに、左のポート80でプラウザから接続。競合回避として、同じポートはなるべく利用しないほうがいい・・・
     ports:
-        - "127.0.0.1:80:80"
+        - "127.0.0.1:80:80" # localhost(127.0.0.1)ポート80(ブラウザ) から Containerポート80に接続
     extra_hosts:
       - "nissy-dev01.com:172.18.1.30"
     environment:
