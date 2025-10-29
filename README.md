@@ -17,9 +17,9 @@ docker network inspect $(docker network ls -q) --format '{{.Name}}: {{range .IPA
 ```
 
 1. 172.20.0.0/28
-  - backend-app-network(wpとphpmyadmin)
+    - backend-app-network(wpとphpmyadmin)
 2. 172.20.0.16/28
-  - backend-db-network(mariadb)
+    - backend-db-network(mariadb)
 
 # 構成内容
 同梱 drawioファイルにてネットワーク参照可能  
