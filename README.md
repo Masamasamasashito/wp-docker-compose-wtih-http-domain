@@ -23,10 +23,13 @@ docker network inspect $(docker network ls -q) --format '{{.Name}}: {{range .IPA
 
 # 構成内容
 同梱 drawioファイルにてネットワーク参照可能  
-  
-* mariadb:latest
-* phpmyadmin:latest
+
 * wordpress:latest
+    - https://hub.docker.com/_/wordpress
+* phpmyadmin:latest
+    - https://hub.docker.com/_/phpmyadmin
+* mariadb:latest
+    - https://hub.docker.com/_/mariadb
 * 非SSL独自ドメイン
 * WP-CLI無し
 * MailHog無し
