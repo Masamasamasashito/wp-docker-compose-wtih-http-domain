@@ -10,7 +10,8 @@
 
 # ネットワークの前提
 
-以下のコマンドで、下記、1と2が既存ネットワークと重複していないこと（WSL2 の Ubuntu でコマンド実行）
+defaultのBridge利用が他用途との干渉原因になりやすいためBridgeをymlの中で指定しています。  
+以下のコマンドで、下記、1と2が既存ネットワークと重複していないこと（WSL2 の Ubuntu でコマンド実行）  
 
 ```
 docker network inspect $(docker network ls -q) --format '{{.Name}}: {{range .IPAM.Config}}{{.Subnet}}{{end}}'
