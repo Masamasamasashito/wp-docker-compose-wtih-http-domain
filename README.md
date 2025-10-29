@@ -2,7 +2,7 @@
 
 * Windows の Docker Desktop で 非SSL独自ドメインWP  
 * AWS ALBでACMによるSSL終端想定
-  * そのため、yml内のネットワークは、backend-app-network、backend-db-network　としている
+  * そのため、yml内のネットワークは、backend-app-network(wpとphpmyadmin)、backend-db-network(mariadb)　としている
 * hostsファイルには`127.0.0.1 nissy-dev01.com`を`docker-compose up -d`実行前に1行追記
   * [https://hostsfileeditor.com/](https://hostsfileeditor.com/)が便利
 * Windowsファイアウォール穴あけ不要
