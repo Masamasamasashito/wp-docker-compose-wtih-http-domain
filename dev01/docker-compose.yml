@@ -1,0 +1,88 @@
+services:
+
+  wordpress:
+    image: wordpress:latest
+    container_name: nissy_dev01_wordpress
+    restart: always
+    ports:
+        - "127.0.0.1:80:80" # localhost(127.0.0.1)ポート80(ブラウザ) から Containerポート80に接続
+    extra_hosts:
+      - "host.docker.internal:host-gateway" # Dockerコンテナ内からホストにアクセス。メール送信などで必要
+    environment:
+      WORDPRESS_DB_HOST: mariadb:3306
+      WORDPRESS_DB_USER: nissy_dev01_db_wp_user
+      WORDPRESS_DB_PASSWORD: nissy_dev01_db_wp_password
+      WORDPRESS_DB_NAME: nissy_dev01_db_wp
+      WORDPRESS_DEBUG: 1
+      WORDPRESS_CONFIG_EXTRA: |
+        define('WP_HOME', 'http://nissy-dev01.com');
+        define('WP_SITEURL', 'http://nissy-dev01.com');
+    depends_on:
+        - mariadb
+    volumes:
+        - ./html:/var/www/html  # 母艦の/html(docker-composeコマンド実行場所)を、コンテナ内の/var/www/htmlにマウント
+    networks:
+      backend-app-network:
+        ipv4_address: 172.20.0.2
+      backend-db-network:
+        ipv4_address: 172.20.0.18
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: nissy_dev01_phpmyadmin
+    ports:
+      - "127.0.0.1:8080:80"  # localhost(127.0.0.1)ポート8080(ブラウザ) から Containerポート80に接続
+    extra_hosts:
+      - "host.docker.internal:host-gateway" # Dockerコンテナ内からホストにアクセス。メール送信などで必要
+    restart: always
+    environment:
+      PMA_HOST: mariadb
+      PMA_USER: nissy_dev01_db_wp_user
+      PMA_PASSWORD: nissy_dev01_db_wp_password
+    depends_on:
+      - mariadb
+    volumes:
+        - nissy-dev01-dbadmin-data:/sessions
+    networks:
+      backend-app-network:
+        ipv4_address: 172.20.0.3
+      backend-db-network:
+        ipv4_address: 172.20.0.19
+
+  mariadb:
+    image: mariadb:latest
+    container_name: nissy_dev01_mariadb
+    ports:
+      - "127.0.0.1:3306:3306"
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: nissy_dev01_db_root_password
+      MARIADB_DATABASE: nissy_dev01_db_wp
+      MARIADB_USER: nissy_dev01_db_wp_user
+      MARIADB_PASSWORD: nissy_dev01_db_wp_password
+    volumes:
+      - nissy-dev01-db-data:/var/lib/mysql
+    networks:
+      backend-db-network:
+        ipv4_address: 172.20.0.20
+
+networks:
+  backend-app-network: # docker-compose内の呼称
+    name: nissy-dev01-backend-app-network # 実際のDockerネットワーク名
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/28
+          gateway: 172.20.0.1
+
+  backend-db-network:
+    name: nissy-dev01-backend-db-network
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.16/28
+          gateway: 172.20.0.17
+
+volumes:
+  nissy-dev01-db-data:
+  nissy-dev01-dbadmin-data:
