@@ -7,6 +7,7 @@
   * [https://hostsfileeditor.com/](https://hostsfileeditor.com/)が便利
 * Windowsファイアウォール穴あけ不要
 * docker-compose.ymlと同じ階層にhtmlフォルダを作っておいてから`docker-compose up -d`
+* 複数環境の並走可能
 
 ## 複数環境を同時並走する場合
 
