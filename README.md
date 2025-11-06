@@ -8,6 +8,32 @@
 * Windowsファイアウォール穴あけ不要
 * docker-compose.ymlと同じ階層にhtmlフォルダを作っておいてから`docker-compose up -d`
 
+## 複数環境を同時並走する場合
+
+*以下にdev01,cev02のサンプルを配置済*
+
+- dev01
+ - https://github.com/Masamasamasashito/wp-docker-compose-wtih-http-domain/blob/main/dev01/docker-compose.yml
+- dev02
+ - https://github.com/Masamasamasashito/wp-docker-compose-wtih-http-domain/blob/main/dev02/docker-compose.yml
+
+*dev01,dev02の差分内容*
+この点を考慮することでローカルホストのリソースに余力が有れば、他のコンテナセットを並走可能。
+
+- 各種 ports ローカルホストIPアドレス
+- DBユーザー名、DBパスワード、DB名
+- WordPressドメイン名
+- 各種 networks ipv4_address
+
+### hoststファイル
+
+以下のように設定
+
+```
+127.0.0.1 nissy-dev01.com
+127.0.0.2 nissy-dev02.com
+```
+
 # ネットワークの前提
 
 defaultのBridge利用が他用途との干渉原因になりやすいためBridgeをymlの中で指定しています。  
@@ -51,6 +77,10 @@ docker network inspect $(docker network ls -q) --format '{{.Name}}: {{range .IPA
 
 # 図解
 
-母艦Windows OSのブラウザからWordPressまでのhttpリクエストのみ経路を青で記載
+[dev01/docker-compose.yml](https://github.com/Masamasamasashito/wp-docker-compose-wtih-http-domain/blob/main/dev01/docker-compose.yml)の場合の母艦Windows OSのブラウザからWordPressまでのhttpリクエストのみ経路を青で記載
 
 ![https://github.com/Masamasamasashito/wp-docker-compose-wtih-http-domain/blob/mainnissy-dev01-windows-local-docker-20251106-15.jpg](https://github.com/Masamasamasashito/wp-docker-compose-wtih-http-domain/blob/main/nissy-dev01-windows-local-docker-20251106-15.jpg)
+
+# 注意事項
+
+config関連の設定値の別ファイル化 と .gitignore 設定を行っていない。
