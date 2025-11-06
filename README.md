@@ -5,6 +5,7 @@
   * そのため、yml内のネットワークは、backend-app-network(wpとphpmyadmin)、backend-db-network(mariadb)　としている
 * hostsファイルには`127.0.0.1 nissy-dev01.com`を`docker-compose up -d`実行前に1行追記
   * [https://hostsfileeditor.com/](https://hostsfileeditor.com/)が便利
+  * hostsファイル設定抜け漏れしないようにくれぐれも注意
 * Windowsファイアウォール穴あけ不要
 * docker-compose.ymlと同じ階層にhtmlフォルダを作っておいてから`docker-compose up -d`
 * 複数環境の並走可能
