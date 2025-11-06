@@ -29,7 +29,9 @@
 
 これらの点を考慮することでローカルホストのリソースに余力が有れば、他のコンテナセットを並走可能。
 
-### hoststファイル
+### hostsファイル
+
+場所:`C:\Windows\System32\drivers\etc\hosts`
 
 以下のように設定。記載する前に重複がないか？要確認。
 
@@ -88,6 +90,6 @@ docker network inspect $(docker network ls -q) --format '{{.Name}}: {{range .IPA
 
 ![https://github.com/Masamasamasashito/wp-docker-compose-wtih-http-domain/blob/mainnissy-dev01-windows-local-docker-20251106-15.jpg](https://github.com/Masamasamasashito/wp-docker-compose-wtih-http-domain/blob/main/nissy-dev01-windows-local-docker-20251106-15.jpg)
 
-# 注意事項
+# ⚠️注意事項⚠️
 
 portsで必ずプライベートIPアドレスを明記していることもあり、config関連の設定値の別ファイル化 と 別ファイル用の.gitignore 設定を行っていない。
