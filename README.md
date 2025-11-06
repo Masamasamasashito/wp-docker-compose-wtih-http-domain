@@ -10,20 +10,22 @@
 
 ## 複数環境を同時並走する場合
 
-*以下にdev01,cev02のサンプルを配置済*
+2環境分のdev01,cev02のdocker-compose.yml
 
 - dev01
- - https://github.com/Masamasamasashito/wp-docker-compose-wtih-http-domain/blob/main/dev01/docker-compose.yml
+  - https://github.com/Masamasamasashito/wp-docker-compose-wtih-http-domain/blob/main/dev01/docker-compose.yml
 - dev02
- - https://github.com/Masamasamasashito/wp-docker-compose-wtih-http-domain/blob/main/dev02/docker-compose.yml
+  - https://github.com/Masamasamasashito/wp-docker-compose-wtih-http-domain/blob/main/dev02/docker-compose.yml
 
-*dev01,dev02の差分内容*
-この点を考慮することでローカルホストのリソースに余力が有れば、他のコンテナセットを並走可能。
+### dev01,dev02の差分内容
 
 - 各種 ports ローカルホストIPアドレス
-- DBユーザー名、DBパスワード、DB名
-- WordPressドメイン名
 - 各種 networks ipv4_address
+- WordPressドメイン名（ローカルで扱うドメイン名）
+- DBユーザー名、DBパスワード、DB名
+- 各種命名
+
+これらの点を考慮することでローカルホストのリソースに余力が有れば、他のコンテナセットを並走可能。
 
 ### hoststファイル
 
