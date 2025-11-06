@@ -52,7 +52,7 @@ docker network inspect $(docker network ls -q) --format '{{.Name}}: {{range .IPA
     - backend-db-network(mariadb)
 
 # 構成内容
-同梱 drawioファイルにてネットワーク参照可能  
+下部の図解にて。drawioファイルも有。
 
 * wordpress:latest
     - https://hub.docker.com/_/wordpress
@@ -69,6 +69,9 @@ docker network inspect $(docker network ls -q) --format '{{.Name}}: {{range .IPA
 
 以下の命名を(Ctrl+F)で適宜置換してご利用ください
 * nissy-dev01.com
+* nissy-dev02.com
+
+ローカルホスト 127.0.0.1 が既存の他環境と衝突していないか？要確認。
 
 # 起動後
 
