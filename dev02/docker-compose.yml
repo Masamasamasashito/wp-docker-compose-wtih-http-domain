@@ -1,0 +1,88 @@
+services:
+
+  wordpress:
+    image: wordpress:latest
+    container_name: nissy_dev02_wordpress
+    restart: always
+    ports:
+      - "127.0.0.2:80:80"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      WORDPRESS_DB_HOST: mariadb:3306
+      WORDPRESS_DB_USER: nissy_dev02_db_wp_user
+      WORDPRESS_DB_PASSWORD: nissy_dev02_db_wp_password
+      WORDPRESS_DB_NAME: nissy_dev02_db_wp
+      WORDPRESS_DEBUG: 1
+      WORDPRESS_CONFIG_EXTRA: |
+        define('WP_HOME', 'http://nissy-dev02.com');
+        define('WP_SITEURL', 'http://nissy-dev02.com');
+    depends_on:
+      - mariadb
+    volumes:
+      - ./html:/var/www/html
+    networks:
+      backend-app-network:
+        ipv4_address: 172.21.0.2
+      backend-db-network:
+        ipv4_address: 172.21.0.18
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: nissy_dev02_phpmyadmin
+    ports:
+      - "127.0.0.2:8080:80"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: always
+    environment:
+      PMA_HOST: mariadb
+      PMA_USER: nissy_dev02_db_wp_user
+      PMA_PASSWORD: nissy_dev02_db_wp_password
+    depends_on:
+      - mariadb
+    volumes:
+      - nissy-dev02-dbadmin-data:/sessions
+    networks:
+      backend-app-network:
+        ipv4_address: 172.21.0.3
+      backend-db-network:
+        ipv4_address: 172.21.0.19
+
+  mariadb:
+    image: mariadb:latest
+    container_name: nissy_dev02_mariadb
+    ports:
+      - "127.0.0.2:3306:3306"
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: nissy_dev02_db_root_password
+      MARIADB_DATABASE: nissy_dev02_db_wp
+      MARIADB_USER: nissy_dev02_db_wp_user
+      MARIADB_PASSWORD: nissy_dev02_db_wp_password
+    volumes:
+      - nissy-dev02-db-data:/var/lib/mysql
+    networks:
+      backend-db-network:
+        ipv4_address: 172.21.0.20
+
+networks:
+  backend-app-network:
+    name: nissy-dev02-backend-app-network
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.21.0.0/28
+          gateway: 172.21.0.1
+
+  backend-db-network:
+    name: nissy-dev02-backend-db-network
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.21.0.16/28
+          gateway: 172.21.0.17
+
+volumes:
+  nissy-dev02-db-data:
+  nissy-dev02-dbadmin-data:
