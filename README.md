@@ -53,4 +53,4 @@ docker network inspect $(docker network ls -q) --format '{{.Name}}: {{range .IPA
 
 母艦Windows OSのブラウザからWordPressまでのhttpリクエストのみ経路を青で記載
 
-![https://github.com/Masamasamasashito/wp-docker-compose-wtih-http-domain/blob/main/nissy-dev01-windows-local-docker-20251029-14.jpg](https://github.com/Masamasamasashito/wp-docker-compose-wtih-http-domain/blob/main/nissy-dev01-windows-local-docker-20251029-14.jpg)
+![https://github.com/Masamasamasashito/wp-docker-compose-wtih-http-domain/blob/mainnissy-dev01-windows-local-docker-20251106-15.jpg](https://github.com/Masamasamasashito/wp-docker-compose-wtih-http-domain/blob/main/nissy-dev01-windows-local-docker-20251106-15.jpg)
