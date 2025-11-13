@@ -78,11 +78,20 @@ docker network inspect $(docker network ls -q) --format '{{.Name}}: {{range .IPA
 
 # 起動後
 
-* WordPress
-  * [http://nissy-dev01.com](http://nissy-dev01.com)
-  * [http://127.0.0.1:80](http://127.0.0.1:80)
-* phpmyadmin
-  * [http://127.0.0.1:8080](http://127.0.0.1:8080)
+* nissy-dev01.com
+  * WordPress
+    * [http://nissy-dev01.com](http://nissy-dev01.com)
+    * [http://127.0.0.1:80](http://127.0.0.1:80)
+  * phpmyadmin
+    * [http://127.0.0.1:8080](http://127.0.0.1:8080)
+* nissy-dev02.com
+  * WordPress
+    * [http://nissy-dev02.com](http://nissy-dev02.com)
+    * [http://127.0.0.2:80](http://127.0.0.2:80)
+  * phpmyadmin
+    * [http://127.0.0.2:8080](http://127.0.0.2:8080)
+
+
 
 # 図解
 
