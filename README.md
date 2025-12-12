@@ -101,4 +101,4 @@ docker network inspect $(docker network ls -q) --format '{{.Name}}: {{range .IPA
 
 # ⚠️注意事項⚠️
 
-portsで必ずプライベートIPアドレスを明記していることもあり、config関連の設定値の別ファイル化 と 別ファイル用の.gitignore 設定を行っていない。
+portsで必ずプライベートIPアドレスを明記していることもあり、config関連の設定値の別ファイル(env.example)化 と .gitignore 設定を行っていないです。セキュリティにはご注意ください。
