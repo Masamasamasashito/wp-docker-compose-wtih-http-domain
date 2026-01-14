@@ -12,7 +12,7 @@
 
 ## 複数環境を同時並走する場合
 
-2環境分のdev01,cev02のdocker-compose.yml
+2環境分のdev01,dev02のdocker-compose.yml
 
 - dev01
   - https://github.com/Masamasamasashito/wp-docker-compose-wtih-http-domain/blob/main/dev01/docker-compose.yml
